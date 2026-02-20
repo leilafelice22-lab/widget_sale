@@ -15,17 +15,16 @@
 
   // Creiamo l’overlay del popin
   const popinOverlay = document.createElement("div");
-  popinOverlay.style.display = "none";
   popinOverlay.style.position = "fixed";
   popinOverlay.style.top = "0";
   popinOverlay.style.left = "0";
   popinOverlay.style.width = "100%";
   popinOverlay.style.height = "100%";
   popinOverlay.style.backgroundColor = "rgba(0,0,0,0.5)";
-  popinOverlay.style.display = "flex";
   popinOverlay.style.justifyContent = "center";
   popinOverlay.style.alignItems = "center";
   popinOverlay.style.zIndex = "9999";
+  popinOverlay.style.display = "none"; // ✅ nascosto all'inizio
 
   const popinBox = document.createElement("div");
   popinBox.style.backgroundColor = "#fff";
@@ -54,13 +53,17 @@
       <button id="close-popin-btn" style="padding:5px 10px; cursor:pointer;">Chiudi</button>
     `;
 
-    document.getElementById("close-popin-btn").onclick = () => popinOverlay.style.display = "none";
-    document.getElementById("popin-cta-btn").onclick = () => alert("Hai cliccato la CTA!");
+    document.getElementById("close-popin-btn").onclick = () => {
+      popinOverlay.style.display = "none";
+    };
 
-    popinOverlay.style.display = "flex";
+    document.getElementById("popin-cta-btn").onclick = () => {
+      alert("Hai cliccato la CTA!");
+    };
+
+    popinOverlay.style.display = "flex"; // ✅ appare solo al click
   }
 
-  // Bottone per mostrare il popin
   document.getElementById("show-popin-btn").onclick = showPopin;
 
 })();
